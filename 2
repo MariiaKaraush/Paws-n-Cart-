@@ -1,0 +1,86 @@
+shopping = False
+
+print("Welcome to Paws n Cart! \n")
+
+list_of_items = ["Cat Wet Food", "Cat Dry Food","Dog Wet Food", "Dog Dry Food", "Cat Toy", "Dog Toy", "Fish Food", "Fish Bowl"]
+
+dict_of_prices = {
+    "Cat Wet Food": 3, 
+    "Cat Dry Food": 20,
+    "Dog Wet Food": 4, 
+    "Dog Dry Food": 36, 
+    "Cat Toy": 7, 
+    "Dog Toy": 9, 
+    "Fish Food": 14,
+    "Fish Bowl": 46
+}
+quantity = []
+total_price = []
+
+item_price = []
+items_of_choice = []
+
+while not shopping:
+    
+    print("-" * 80)
+    print("Would you like to: ")
+    print('''\n 1. Add an item to your cart \n 2. Change the number of items in your cart
+ 3. Remove an item from your cart \n 4. View the total of your cart \n 5.Checkout''')
+    
+    try:
+        choice = input("\n Please enter the number of the option you would like to choose: \n ")
+
+        
+        if int(choice) == 1:
+            print("\nItems available: \n Cat Wet Food \n Cat Dry Food \n Dog Wet Food \n Dog Dry Food \n Cat Toy \n Dog Toy \n Fish Food \n Fish Bowl ")
+            item_of_choice = input("\nPlease choose the item you would like to add to your cart: \n")
+            if item_of_choice.title() in list_of_items:
+                item_price.append(dict_of_prices[item_of_choice.title()])
+                items_of_choice.append(item_of_choice.title())
+                quantity_number = int(input("How many items: "))
+                quantity.append(quantity_number)
+                total_items_price = dict_of_prices[item_of_choice.title()] * quantity_number
+                total_price.append(total_items_price)
+                print(f"{item_of_choice.title()} has been added to your cart successfully")
+
+        elif int(choice) == 2:
+            change_item = input("For which item would you like to change the quantity: ")
+            change_of_quantity = int(input("Please enter the new quantity: "))
+            if change_item.title() in items_of_choice:
+                index = items_of_choice.index(change_item.title())
+                quantity[index] = change_of_quantity
+                actual_price = item_price[index]
+                total_price[index] = actual_price * change_of_quantity
+                print(f"The quantity of {change_item.title()} has been successfully changed in your cart")
+            else:
+                print(f"{change_item.title()} is not in your cart.")
+
+        elif int(choice) == 3:
+            remove_item = input("Which item would you like to remove: ")
+            if remove_item.title() in list_of_items:
+                index = items_of_choice.index(remove_item.title())
+                list_of_items.pop(index)
+                total_price.pop(index)
+                quantity.pop(index)
+                print(f"{remove_item.title()} has been successfully removed from your cart")
+            else:
+                print(f"{remove_item.title()} is not in your cart.")
+        
+        elif int(choice) == 4:
+            total_cost = sum(total_price)
+            print(f"\n The total cost of your shopping cart is £{total_cost}")
+
+        elif int(choice) == 5:
+            print("Thank you for shopping with us!")
+            shopping = True
+
+
+        if int(choice) in {1, 2, 3, 4}:
+            print("\n" + "-" * 80)
+            print("This is your shopping cart:")
+            for item, price, numb_of_items, total_item_price in zip(items_of_choice, item_price, quantity, total_price):
+                print(f"{item} \t \t item price £ {price} \t {numb_of_items} items \t  total price \t £  {total_item_price}")
+
+    except ValueError:
+        print("That is not a valid option")
+    
