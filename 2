@@ -32,7 +32,10 @@ while not shopping:
 
         
         if int(choice) == 1:
-            print("\nItems available: \n Cat Wet Food \n Cat Dry Food \n Dog Wet Food \n Dog Dry Food \n Cat Toy \n Dog Toy \n Fish Food \n Fish Bowl ")
+            print("\nItems available:")
+            for item in list_of_items:
+                print(item)
+                
             item_of_choice = input("\nPlease choose the item you would like to add to your cart: \n")
             if item_of_choice.title() in list_of_items:
                 item_price.append(dict_of_prices[item_of_choice.title()])
