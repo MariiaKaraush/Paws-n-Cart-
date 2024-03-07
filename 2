@@ -2,7 +2,8 @@ shopping = False
 
 print("Welcome to Paws n Cart! \n")
 
-list_of_items = ["Cat Wet Food", "Cat Dry Food","Dog Wet Food", "Dog Dry Food", "Cat Toy", "Dog Toy", "Fish Food", "Fish Bowl"]
+list_of_items = ["Cat Wet Food", "Cat Dry Food","Dog Wet Food",
+                "Dog Dry Food", "Cat Toy", "Dog Toy", "Fish Food", "Fish Bowl"]
 
 dict_of_prices = {
     "Cat Wet Food": 3, 
@@ -82,7 +83,7 @@ while not shopping:
             print("\n" + "-" * 80)
             print("This is your shopping cart:")
             for item, price, numb_of_items, total_item_price in zip(items_of_choice, item_price, quantity, total_price):
-                print(f"{item} \t \t item price £ {price} \t {numb_of_items} items \t  total price \t £  {total_item_price}")
+                print(f"{item}  \t item price £ {price} \t {numb_of_items} items \t  total price \t £  {total_item_price}")
 
     except ValueError:
         print("That is not a valid option")
